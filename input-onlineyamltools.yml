@@ -1,0 +1,27 @@
+﻿language: cpp
+
+compiler: 
+  - gcc
+  - clang
+
+script:
+- mkdir -p ./build/formatter ./build/formatter_ex ./build/hello ./build/solver_lib ./build/solver
+- cmake -H./formatter_lib -B./build/formatter
+- cmake --build ./build/formatter
+- cmake -H./formatter_ex_lib -B./build/formatter_ex
+- cmake --build ./build/formatter_ex
+- cmake -H./solver_lib -B./build/solver_lib
+- cmake --build ./build/solver_lib
+- cmake -H./hello_world_application -B./build/hello
+- cmake --build ./build/hello
+- cmake -H./solver_application -B./build/solver
+- cmake --build ./build/solver
+
+# Upgrading cmake to 3.2.3
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
